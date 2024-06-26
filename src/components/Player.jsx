@@ -1,13 +1,17 @@
 import { useState } from "react";
 
 const Player = (props) => {
-  const { initialName, symbol, isActive } = props;
+  const { initialName, symbol, isActive, onChangeName } = props;
 
   const [isEditing, setIsEditing] = useState(false);
   const [playerName, setPlayerName] = useState(initialName);
 
   const handleEdit = () => {
     setIsEditing((editing) => !editing);
+
+    if (isEditing) {
+      onChangeName(symbol, playerName);
+    }
   };
 
   let editablePlayerName = <span className="player-name">{playerName}</span>;
